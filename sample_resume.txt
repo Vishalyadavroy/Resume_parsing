@@ -1,0 +1,30 @@
+JOHN DOE
+Software Engineer
+
+CONTACT
+Email: john.doe@email.com
+Phone: +1-555-123-4567
+LinkedIn: linkedin.com/in/johndoe
+GitHub: github.com/johndoe
+
+EDUCATION
+Bachelor of Science in Computer Science
+Massachusetts Institute of Technology (MIT)
+2018 - 2022
+
+EXPERIENCE
+Senior Software Engineer
+Google Inc.
+June 2022 - Present
+- Led development of microservices architecture serving 10M+ users
+- Improved system performance by 40% through optimization
+- Mentored team of 5 junior developers
+
+Software Developer Intern
+Microsoft
+Summer 2021
+- Developed features for Azure cloud platform
+- Contributed to CI/CD pipeline improvements
+
+SKILLS
+Python, JavaScript, TypeScript, React, Node.js, AWS, Docker, Kubernetes, PostgreSQL, MongoDB, Git
