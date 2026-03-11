@@ -18,7 +18,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse 
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -141,17 +141,37 @@ class ResumeData(BaseModel):
         
         # Handle education
         education = []
-        edu_data = data.get('education', [])
+        edu_data = data.get("education", [])
+
         if edu_data and isinstance(edu_data, list):
             for item in edu_data:
                 if isinstance(item, dict):
+
+                    # Get institution line and clean it
+                    institution_line = str(item.get("institution", "")).replace("•", "").strip()
+
+                    institution = institution_line
+                    location = None
+
+                    # Case 1: If comma present (most common format)
+                    if "," in institution_line:
+                        parts = [p.strip() for p in institution_line.split(",")]
+
+                        if len(parts) >= 2:
+                            institution = parts[0]
+                            location = parts[-1]
+
+                    # Case 2: If location already provided
+                    if item.get("location"):
+                        location = item.get("location")
+
                     education.append({
-                        'level': str(item.get('level', '')),
-                        'qualification': str(item.get('qualification', '')),
-                        'institution': str(item.get('institution', '')),
-                        'location': item.get('location') if item.get('location') else None,
-                        'percentage': str(item.get('percentage', '')),
-                        'year': str(item.get('year', ''))
+                        "level": str(item.get("level", "")),
+                        "qualification": str(item.get("qualification", "")),
+                        "institution": institution,
+                        "location": location,
+                        "percentage": str(item.get("percentage", "")),
+                        "year": str(item.get("year", ""))
                     })
         
         # Handle experience
